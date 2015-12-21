@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <title>test dragable</title>
     <style>
-      li {
+      li,tr {
         line-height: 3em;
         background-color: blue;
         border: red solid 3px;
       }
-      ul {
+      ul,tbody {
         background-color: yellow;
       }
       .draging {
@@ -25,6 +25,27 @@
       <ul v-droper="list" drag-class="droper">
         <li v-dragable drag-class="draging" v-for="item in list">{{item}}</li>
       </ul>
+      <br>
+      <hr>
+      <table>
+        <thead>
+          <tr>
+            <th>
+
+            </th>
+          </tr>
+        </thead>
+        <tbody v-droper="list" drag-class="droper">
+          <tr v-dragable v-for="(index,item) in list">
+            <td>
+              {{index}}
+            </td>
+            <td>
+              {{item}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <script src="https://rawgit.com/vuejs/vue/master/dist/vue.min.js"></script>
     <script type="text/javascript">

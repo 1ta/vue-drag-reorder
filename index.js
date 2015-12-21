@@ -65,17 +65,24 @@ exports.install = function(Vue){
         workWithClass(target, self.params['dragClass'], 'yita-draging-zone', 'remove')
       }
       element.ondragover = function(event){
-        event.preventDefault();
+        event.preventDefault()
       }
       element.ondrop = function(event){
-        event.preventDefault();
-        event.stopPropagation();
+        event.preventDefault()
+        event.stopPropagation()
         let fromIndex = event.dataTransfer.getData('text')
         let target = event.target
+        workWithClass(target, self.params['dragClass'], 'yita-draging-zone', 'remove')
+        if(target.nodeName==='TD'){
+          target = target.parentElement
+        }
         let toIndex = Array.from(this.children).indexOf(target)
+        if(toIndex===-1) {
+          console.warn('cannot found', target, 'in ', this)
+        }
         let out = moveTo(self.vm[expr], fromIndex, toIndex)
         self.vm.$set(expr, out)
-        workWithClass(target, self.params['dragClass'], 'yita-draging-zone', 'remove')
+
       }
     },
     update: function(value, oldValue){
