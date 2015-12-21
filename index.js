@@ -72,10 +72,10 @@ exports.install = function(Vue){
         event.stopPropagation()
         let fromIndex = event.dataTransfer.getData('text')
         let target = event.target
-        workWithClass(target, self.params['dragClass'], 'yita-draging-zone', 'remove')
         if(target.nodeName==='TD'){
           target = target.parentElement
         }
+        workWithClass(target, self.params['dragClass'], 'yita-draging-zone', 'remove')
         let toIndex = Array.from(this.children).indexOf(target)
         if(toIndex===-1) {
           console.warn('cannot found', target, 'in ', this)
