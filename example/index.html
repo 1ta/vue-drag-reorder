@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>test dragable</title>
+    <style>
+      li {
+        line-height: 3em;
+        background-color: blue;
+        border: red solid 3px;
+      }
+      ul {
+        background-color: yellow;
+      }
+      .draging {
+        background-color: grey
+      }
+      .droper {
+        background-color: orange
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <ul v-droper="list" drag-class="droper">
+        <li v-dragable drag-class="draging" v-for="item in list">{{item}}</li>
+      </ul>
+    </div>
+    <script src="http://vuejs.org/js/vue.js"></script>
+    <script type="text/javascript">
+      exports = {}
+    </script>
+    <script src="../index.js"></script>
+    <script type="text/javascript">
+      'use strict'
+      exports.install(Vue)
+      let list = []
+      for (let i = 0; i < 10; i++) {
+        list.push(String(i+100).repeat(5))
+      }
+      let app = new Vue({
+        el: '#app',
+        data: {
+          list: list
+        }
+      })
+    </script>
+  </body>
+</html>

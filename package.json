@@ -1,0 +1,25 @@
+{
+  "name": "vue-drag-reorder",
+  "version": "1.0.0",
+  "description": "A vue plugin of directive to make html elements dragable and to reorder items",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1ta/vue-drag-reorder.git"
+  },
+  "keywords": [
+    "vue",
+    "drag",
+    "drop",
+    "reorder"
+  ],
+  "author": "WuSisu <i@wusisu.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/1ta/vue-drag-reorder/issues"
+  },
+  "homepage": "https://github.com/1ta/vue-drag-reorder#readme"
+}
