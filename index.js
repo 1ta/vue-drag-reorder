@@ -18,6 +18,11 @@ const moveTo = function(list, fromIndex, toIndex){
   return arr
 }
 
+const confirmTarget =
+  target => target.nodeName==='TD'
+  ? target.parentElement
+  : target
+
 const workWithClass = function (element, newClass, defaultClassName, doWhat) {
   if(!element.classList) return
   let className = defaultClassName
@@ -57,11 +62,13 @@ exports.install = function(Vue){
       let element = this.el
       element.ondragenter = function (event) {
         let target = event.target
+        target = confirmTarget(target)
         // let index = Array.from(this.children).indexOf(target)
         workWithClass(target, self.params['dragClass'], 'yita-draging-zone', 'add')
       }
       element.ondragleave = function (event) {
         let target = event.target
+        target = confirmTarget(target)
         workWithClass(target, self.params['dragClass'], 'yita-draging-zone', 'remove')
       }
       element.ondragover = function(event){
@@ -72,9 +79,7 @@ exports.install = function(Vue){
         event.stopPropagation()
         let fromIndex = event.dataTransfer.getData('text')
         let target = event.target
-        if(target.nodeName==='TD'){
-          target = target.parentElement
-        }
+        target = confirmTarget(target)
         workWithClass(target, self.params['dragClass'], 'yita-draging-zone', 'remove')
         let toIndex = Array.from(this.children).indexOf(target)
         if(toIndex===-1) {
@@ -82,7 +87,6 @@ exports.install = function(Vue){
         }
         let out = moveTo(self.vm[expr], fromIndex, toIndex)
         self.vm.$set(expr, out)
-
       }
     },
     update: function(value, oldValue){
